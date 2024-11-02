@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA - Proyecto 2 - 201602988</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        let googleChartsReady = false;
+
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(onGoogleChartsLoad);
+
+        function onGoogleChartsLoad() {
+            googleChartsReady = true;
+        }
+
+        function isGoogleChartsReady() {
+            return googleChartsReady;
+        }
+    </script>
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="bg-gray-800 text-3xl text-white">
+        <p class="p-4">
+            Inteligencia Artificial 2024 2S - Proyecto 2
+        </p>
+    </header>
+
+    <main class="flex flex-col grow container mx-auto p-4 gap-2 items-center justify-center">
+        <div class="flex flex-col p-4 gap-2 items-center justify-center">
+            <span>Elija un archivo csv:</span>
+            <input class="border-2" type="file" id="filechooser" />
+            <div class="flex gap-2 items-center justify-center">
+                <input class="h-6 w-6" type="checkbox" id="ignorarHeaderCSV" checked>
+                <label>Ignorar primera línea del CSV</label>
+            </div>
+        </div>
+
+        <hr class="min-w-full"/>
+
+        <div class="flex flex-col p-4 items-center justify-center">
+            <span>Elija un algoritmo de la lista:</span>
+            <select class="border-2" id="algoritmo"></select>
+        </div>
+
+        <hr class="min-w-full"/>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionLinearRegression" style="display:none">
+            <button class="bg-gray-700 active:bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" id="entrenarLinearRegression">
+                Ejecutar entrenamiento
+            </button>
+            <span>Introduzca un rango de predicción en el eje X:</span>
+            <input class="border-2" type="text" id="rangoXLinearRegression" placeholder="ejemplo: 1,2,3" />
+            <button class="bg-gray-700 active:bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" id="predecirLinearRegression">
+                Realizar predicción
+            </button>
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionPolynomialRegression" style="display:none">
+            <span>Introduzca los grados que desea entrenar:</span>
+            <input class="border-2" type="text" id="gradosPolynomialRegression" placeholder="ejemplo: 2,3,4" />
+            <button class="bg-gray-700 active:bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" id="entrenarPolynomialRegression">
+                Ejecutar entrenamiento
+            </button>
+            <span>Introduzca un rango de predicción en el eje X:</span>
+            <input class="border-2" type="text" id="rangoXPolynomialRegression" placeholder="ejemplo: 1,2,3" />
+            <button class="bg-gray-700 active:bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" id="predecirPolynomialRegression">
+                Realizar predicción
+            </button>
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionDecisionTree" style="display:none">
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionNaiveBayes" style="display:none">
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionNeuralNetwork" style="display:none">
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionKMeans" style="display:none">
+            <span>Introduzca la cantidad de clases en las que desea clusterizar los datos:</span>
+            <input class="border-2" type="text" id="clasesKMeans" placeholder="ejemplo: 3" />
+            <button class="bg-gray-700 active:bg-gray-900 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded" id="clasificarKMeans">
+                Ejecutar clasificación
+            </button>
+        </div>
+
+        <div class="flex flex-col p-4 gap-2 items-center justify-center" id="seccionKNearestNeighbor" style="display:none">
+        </div>
+
+        <hr class="min-w-full"/>
+
+        <div class="flex flex-col min-w-full gap-2 items-center justify-center" id="resultadosCanvas">
+        </div>
+        <div class="flex flex-col min-w-full gap-2 items-center justify-center" id="resultadosGeneral">
+        </div>
+        <div class="flex flex-col min-w-full gap-2 items-center justify-center" id="resultadosGoogle">
+        </div>
+
+        <!-- ignorar -->
+        <div id="salida" style="display:none">
+        </div>
+        <div id="salida1" style="display:none">
+        </div>
+        <div id="salida2" style="display:none">
+        </div>
+        <div id="salida3" style="display:none">
+        </div>
+        <div id="salida4" style="display:none">
+        </div>
+        <!-- ignorar fin -->
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2024 Ozmar René Escobar Avila - 201602988</p>
+    </footer>
+
+    <script type="text/javascript" src="dist/tytus.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
